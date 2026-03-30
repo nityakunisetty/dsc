@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+struct node {
+    int data;
+    node *next;
+};
+class linkedlist {
+private:
+    node*head;
+public:
+    linkedlist() {
+        head=NULL;
+    }
+    void insertatend(int val) {
+        node *newnode = new node;
+        newnode->data = val;
+        if (head==NULL) {
+            newnode->next=newnode;
+            head=newnode;
+        } else {
+            node*temp = head;
+            while(temp->next!= head)
+                temp=temp->next;
+            temp->next=newnode;
+            newnode->next=head;
+        }
+    }
+    void display() {
+        if(head==NULL)
+return;
+        node*temp=head;
+        do{
+            cout<<temp->data << " -> ";
+            temp=temp->next;
+        } while (temp!=head);
+        cout<<"(head)\n";
+    }
+};
+int main() {
+    linkedlist l;
+    l.insertatend(15);
+    l.insertatend(20);
+    l.insertatend(30);
+    l.display();
+    return 0;
+}
