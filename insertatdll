@@ -1,0 +1,42 @@
+#include<iostream>
+using namespace std;
+struct Node {
+    int data;
+    Node*next;
+    Node*prev;
+    Node(int value) {
+        data=value;
+        temp=NULL;
+        prev=NULL;
+    }
+};
+class DoublyLinkedList {
+public:
+    Node*head;
+    DoublyLinkedList() {
+        head=NULL;
+    }
+    void insertAtBeginning(int value) {
+        Node*newNode=new Node(value);
+        if (head!=NULL) {
+            newNode->next=head;
+            head->prev=newNode;
+        }
+        head=newNode;
+    }
+    void display() {
+        Node*temp=head;
+        while(temp!=NULL) {
+            cout<< temp->data << " ";
+            temp=temp->next;
+        }
+    }
+};
+int main() {
+    DoublyLinkedList dll;
+    dll.insertAtBeginning(10);
+    dll.insertAtBeginning(20);
+    dll.insertAtBeginning(30);
+    dll.display();
+    return 0;
+}
